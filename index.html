@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Challenge Product</title>
+</head>
+
+<body>
+    <!-- realTime.js -->
+    <div id="realtime-div">
+        <h2></h2>
+        <h1></h1>
+    </div>
+    <img id="background-img">
+
+    <!-- login.js -->
+    <form class="hidden" id="login-form">
+        <input type="text" placeholder="Please write your name" required />
+        <button class="button buttonGreen" type="submit">LogIn</button>
+    </form>
+    <h1 id="greeting" class="hidden"></h1>
+
+    <!-- todo.js -->
+    <form id="todo-form">
+        <input type="text" placeholder="What is your main focus for today" required />
+    </form>
+    <div class="hidden" id="todo-div">
+        <h3>TODAY</h3>
+        <ul id="todo-list"></ul>
+    </div>
+    <div id="weather-div">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <script src="realTime.js"></script>
+    <script src="login.js"></script>
+    <script src="todo.js"></script>
+    <script src="weather.js"></script>
+</body>
+
+</html>
