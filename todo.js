@@ -6,21 +6,21 @@ const toDoList = document.getElementById("todo-list");
 const TODOS_KEY = "todos";
 let todos = [];
 
-function saveToDos(){
+function saveToDos() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+    if (todos.length === 0) {
+        toDoDiv.classList.add(HIDDEN_CLASSNAME);
+    } else {
+        toDoDiv.classList.remove(HIDDEN_CLASSNAME);
+    }
 }
 
-function deleteToDo(e){
- const li = e.target.parentElement;
- li.remove();
- console.log(li.id);
- todos = todos.filter((item) => item.id !== parseInt(li.id));
- saveToDos();
- if (todos.length === 0) {
-    toDoDiv.classList.add(HIDDEN_CLASSNAME);
- }else{
-    toDoDiv.classList.remove(HIDDEN_CLASSNAME);
- }
+function deleteToDo(e) {
+    const li = e.target.parentElement;
+    li.remove();
+    console.log(li.id);
+    todos = todos.filter((item) => item.id !== parseInt(li.id));
+    saveToDos();
 }
 
 function paintToDo(todoObj) {
@@ -32,7 +32,7 @@ function paintToDo(todoObj) {
     icon.classList.add("fa");
     icon.classList.add("fa-close");
     button.appendChild(icon);
-    button.addEventListener("click",deleteToDo);
+    button.addEventListener("click", deleteToDo);
     li.appendChild(span);
     li.appendChild(button);
 
@@ -41,7 +41,7 @@ function paintToDo(todoObj) {
     toDoList.appendChild(li);
 }
 
-function handleToDoSubmit(e){
+function handleToDoSubmit(e) {
     e.preventDefault();
     const newToDo = toDoInput.value;
     toDoInput.value = "";
@@ -49,20 +49,20 @@ function handleToDoSubmit(e){
         text: newToDo,
         id: Date.now(),
     };
-    
+
     todos.push(todoObj);
     paintToDo(todoObj);
-    saveToDos()
+    saveToDos();
 }
 
-toDoForm.addEventListener("submit",handleToDoSubmit);
+toDoForm.addEventListener("submit", handleToDoSubmit);
 
 const savedTodos = localStorage.getItem(TODOS_KEY);
 
 if (savedTodos !== null) {
     const parsedToDos = JSON.parse(savedTodos);
     todos = parsedToDos;
-    if(todos.length !== 0){
+    if (todos.length !== 0) {
         toDoDiv.classList.remove(HIDDEN_CLASSNAME);
         parsedToDos.forEach(paintToDo);
     }
